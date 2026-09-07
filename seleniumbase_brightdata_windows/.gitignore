@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.venv/
+artifacts/
+__pycache__/
+*.pyc
+*.pem
+*.crt
+*.cer
+*.key
+installed-requirements.txt
+installed-browser.json
+latest_logs/
+archived_logs/
+downloaded_files/
+.pytest_cache/
