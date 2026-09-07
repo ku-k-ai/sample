@@ -1,0 +1,2 @@
+# Verified published release. Not a claim of Windows/Bright Data runtime success.
+seleniumbase==4.51.12
