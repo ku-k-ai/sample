@@ -1,0 +1,2 @@
+# Only needed for offline TLS integration tests; certificates are generated locally.
+cryptography>=44
