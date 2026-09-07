@@ -1,0 +1,33 @@
+test_authority_validation (test_relay.RelayTests.test_authority_validation) ... ok
+test_bad_password_returns_502_without_auth_challenge (test_relay.RelayTests.test_bad_password_returns_502_without_auth_challenge) ... ok
+test_https_upstream_with_explicit_ca (test_relay.RelayTests.test_https_upstream_with_explicit_ca) ... ok
+test_missing_credentials_fail_before_listen (test_relay.RelayTests.test_missing_credentials_fail_before_listen) ... ok
+test_plain_http_is_explicitly_rejected (test_relay.RelayTests.test_plain_http_is_explicitly_rejected) ... ok
+test_shutdown_cancels_an_open_tunnel (test_relay.RelayTests.test_shutdown_cancels_an_open_tunnel) ... ok
+test_unreachable_upstream_is_reported (test_relay.RelayTests.test_unreachable_upstream_is_reported) ... ok
+test_untrusted_https_upstream_is_rejected (test_relay.RelayTests.test_untrusted_https_upstream_is_rejected) ... ok
+test_upstream_403_returns_502_not_fake_success (test_relay.RelayTests.test_upstream_403_returns_502_not_fake_success) ... ok
+test_valid_auth_special_characters_and_tls_tunnel (test_relay.RelayTests.test_valid_auth_special_characters_and_tls_tunnel) ... ok
+test_current_loader_not_old_redirect (test_windows_config.ConfigTests.test_current_loader_not_old_redirect) ... ok
+test_environment_overrides_file (test_windows_config.ConfigTests.test_environment_overrides_file) ... ok
+test_exited_windows_worker_is_not_killed (test_windows_config.ConfigTests.test_exited_windows_worker_is_not_killed) ... ok
+test_quoted_spaces_and_bom (test_windows_config.ConfigTests.test_quoted_spaces_and_bom) ... ok
+test_rejects_duplicate_keys (test_windows_config.ConfigTests.test_rejects_duplicate_keys) ... ok
+test_rejects_unclosed_quote (test_windows_config.ConfigTests.test_rejects_unclosed_quote) ... ok
+test_rejects_unknown_keys (test_windows_config.ConfigTests.test_rejects_unknown_keys) ... ok
+test_special_characters_are_literal (test_windows_config.ConfigTests.test_special_characters_are_literal) ... ok
+test_tls_bypass_flags_are_removed (test_windows_config.ConfigTests.test_tls_bypass_flags_are_removed) ... ok
+test_windows_cleanup_is_scoped_to_worker_pid (test_windows_config.ConfigTests.test_windows_cleanup_is_scoped_to_worker_pid) ... ok
+test_worker_has_no_bright_data_environment (test_windows_config.ConfigTests.test_worker_has_no_bright_data_environment) ... ok
+test_403_must_fail (test_worker.WorkerTests.test_403_must_fail) ... ok
+test_expected_content_success (test_worker.WorkerTests.test_expected_content_success) ... ok
+test_http_200_is_not_called_content_success (test_worker.WorkerTests.test_http_200_is_not_called_content_success) ... ok
+test_insecure_capability_is_rejected (test_worker.WorkerTests.test_insecure_capability_is_rejected) ... ok
+test_missing_content_must_fail_even_if_context_swallows (test_worker.WorkerTests.test_missing_content_must_fail_even_if_context_swallows) ... ok
+test_navigation_error_redacts_private_url (test_worker.WorkerTests.test_navigation_error_redacts_private_url) ... ok
+test_unknown_status_is_not_success (test_worker.WorkerTests.test_unknown_status_is_not_success) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 1.654s
+
+OK
