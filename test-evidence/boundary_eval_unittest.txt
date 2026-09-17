@@ -1,0 +1,38 @@
+test_a_has_no_added_instruction (test_boundary_eval.BoundaryEvalTests.test_a_has_no_added_instruction) ... ok
+test_abstention_not_correct (test_boundary_eval.BoundaryEvalTests.test_abstention_not_correct) ... ok
+test_actual_cli_prepare_and_incomplete_report (test_boundary_eval.BoundaryEvalTests.test_actual_cli_prepare_and_incomplete_report) ... ok
+test_actual_subprocess_failure_kept_for_every_trial (test_boundary_eval.BoundaryEvalTests.test_actual_subprocess_failure_kept_for_every_trial) ... ok
+test_all_three_arms_scored (test_boundary_eval.BoundaryEvalTests.test_all_three_arms_scored) ... ok
+test_budget_rejected_before_calls (test_boundary_eval.BoundaryEvalTests.test_budget_rejected_before_calls) ... ok
+test_c_different_reference_set_rejected (test_boundary_eval.BoundaryEvalTests.test_c_different_reference_set_rejected) ... ok
+test_c_other_training_data_rejected (test_boundary_eval.BoundaryEvalTests.test_c_other_training_data_rejected) ... ok
+test_case_count_required (test_boundary_eval.BoundaryEvalTests.test_case_count_required) ... ok
+test_credentials_rejected (test_boundary_eval.BoundaryEvalTests.test_credentials_rejected) ... ok
+test_duplicate_results_rejected (test_boundary_eval.BoundaryEvalTests.test_duplicate_results_rejected) ... ok
+test_frozen_file_drift_rejected (test_boundary_eval.BoundaryEvalTests.test_frozen_file_drift_rejected) ... ok
+test_gold_not_in_upstream_catalogue_detected (test_boundary_eval.BoundaryEvalTests.test_gold_not_in_upstream_catalogue_detected) ... ok
+test_lock_tampering_rejected (test_boundary_eval.BoundaryEvalTests.test_lock_tampering_rejected) ... ok
+test_missing_run_is_inconclusive (test_boundary_eval.BoundaryEvalTests.test_missing_run_is_inconclusive) ... ok
+test_mock_response_cannot_count_as_real (test_boundary_eval.BoundaryEvalTests.test_mock_response_cannot_count_as_real) ... ok
+test_new_instability_is_failure (test_boundary_eval.BoundaryEvalTests.test_new_instability_is_failure) ... ok
+test_no_reference_is_not_fabricated (test_boundary_eval.BoundaryEvalTests.test_no_reference_is_not_fabricated) ... ok
+test_old_results_cannot_enter_payload (test_boundary_eval.BoundaryEvalTests.test_old_results_cannot_enter_payload) ... ok
+test_only_existing_step2_skip_allowed (test_boundary_eval.BoundaryEvalTests.test_only_existing_step2_skip_allowed) ... ok
+test_order_reproducible_and_inputs_identical (test_boundary_eval.BoundaryEvalTests.test_order_reproducible_and_inputs_identical) ... ok
+test_pilot_not_final_acceptance (test_boundary_eval.BoundaryEvalTests.test_pilot_not_final_acceptance) ... ok
+test_placeholders_rejected (test_boundary_eval.BoundaryEvalTests.test_placeholders_rejected) ... ok
+test_plan_matrix_and_gold_separation (test_boundary_eval.BoundaryEvalTests.test_plan_matrix_and_gold_separation) ... ok
+test_raw_trace_edit_rejected (test_boundary_eval.BoundaryEvalTests.test_raw_trace_edit_rejected) ... ok
+test_regression_not_hidden_by_other_improvement (test_boundary_eval.BoundaryEvalTests.test_regression_not_hidden_by_other_improvement) ... ok
+test_response_contract_fixture (test_boundary_eval.BoundaryEvalTests.test_response_contract_fixture) ... ok
+test_seen_cases_cannot_claim_transfer (test_boundary_eval.BoundaryEvalTests.test_seen_cases_cannot_claim_transfer) ... ok
+test_setting_drift_rejected (test_boundary_eval.BoundaryEvalTests.test_setting_drift_rejected) ... ok
+test_target_case_leak_even_wrong_family_rejected (test_boundary_eval.BoundaryEvalTests.test_target_case_leak_even_wrong_family_rejected) ... ok
+test_target_family_leak_rejected (test_boundary_eval.BoundaryEvalTests.test_target_family_leak_rejected) ... ok
+test_unapproved_cards_rejected (test_boundary_eval.BoundaryEvalTests.test_unapproved_cards_rejected) ... ok
+test_wrong_supplement_rejected (test_boundary_eval.BoundaryEvalTests.test_wrong_supplement_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 4.877s
+
+OK

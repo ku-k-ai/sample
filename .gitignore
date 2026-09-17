@@ -1,0 +1,15 @@
+# Company data and evaluation outputs: NEVER publish.
+.local_eval/
+private/
+local_data/
+results/
+runs/
+logs/
+*.local.json
+*.local.jsonl
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.venv/
