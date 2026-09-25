@@ -1,0 +1,39 @@
+name: Replace repository from handoff package
+
+on:
+  push:
+    branches:
+      - replace-claude-handoff-2
+
+permissions:
+  contents: write
+
+jobs:
+  replace:
+    if: github.event.head_commit.message != 'Replace repository with claude_code_handoff package'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: replace-claude-handoff-2
+          fetch-depth: 0
+
+      - name: Reconstruct and verify archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .handoff_payload/zip_* | tr -d '\n\r' | base64 -d > /tmp/claude_code_handoff.zip
+          unzip -t /tmp/claude_code_handoff.zip
+
+      - name: Replace repository contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          unzip -q /tmp/claude_code_handoff.zip -d .
+          git status --short
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Replace repository with claude_code_handoff package"
+          git push origin HEAD:replace-claude-handoff-2
