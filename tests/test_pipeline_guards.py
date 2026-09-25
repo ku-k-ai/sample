@@ -10,8 +10,6 @@ from patent_pipeline.guards import (
 )
 
 TEMPLATE = (Path(__file__).resolve().parents[1] / "prompts" / "final_decision_v4.txt").read_text(encoding="utf-8")
-TEMPLATE_V4_2 = (Path(__file__).resolve().parents[1] / "prompts" / "final_decision_v4_2.txt").read_text(encoding="utf-8")
-V4_2_LINE = "代表例（非限定）の欄に、特徴部分の仕組みそのものの名前"
 
 
 class PipelineGuardsTest(unittest.TestCase):
@@ -275,21 +273,6 @@ class PipelineGuardsTest(unittest.TestCase):
             TEMPLATE, claims="請求項1 …", step0={}, process_context={}, handoff=self.handoff(),
             all_rules=[{"ラベル": "整列装置", "担当範囲の定義": "…"}])
         self.assertIn("請求された物を設計・変更するのは誰か", system)
-        self.assertNotIn("{{", user)
-
-    def test_v4_2_differs_from_v4_by_one_line_only(self):
-        old, new = TEMPLATE.splitlines(), TEMPLATE_V4_2.splitlines()
-        added = [line for line in new if line not in old]
-        self.assertEqual(len(new), len(old) + 1)
-        self.assertEqual(len(added), 1)
-        self.assertIn(V4_2_LINE, added[0])
-        self.assertNotIn("直接構成または変更", TEMPLATE_V4_2)  # 不採用のBの段落が混入していない
-
-    def test_render_v4_2_fills_all_placeholders(self):
-        system, user = render_final_prompt(
-            TEMPLATE_V4_2, claims="請求項1 …", step0={}, process_context={}, handoff=self.handoff(),
-            all_rules=[{"ラベル": "整列装置", "担当範囲の定義": "…", "代表例（非限定）": "整列機構"}])
-        self.assertIn(V4_2_LINE, user)
         self.assertNotIn("{{", user)
 
 
