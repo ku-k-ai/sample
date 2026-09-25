@@ -60,22 +60,21 @@ class SectionsTest(unittest.TestCase):
         long = "【発明が解決しようとする課題】【0004】" + "あ" * 5000 + "【発明の効果】【0005】い"
         got = extract_problem_and_effect(long, max_chars=100)
         self.assertEqual(len(got[0]["原文"]), 100)
+        self.assertTrue(got[0]["切り詰め"])
+        self.assertFalse(got[1]["切り詰め"])
 
 
 class TemplateV43Test(unittest.TestCase):
-    def test_v4_3_changes_only_intended_lines(self):
+    def test_v4_3_only_adds_lines(self):
         old, new = V4.splitlines(), V43.splitlines()
-        removed = [l for l in old if l not in new]
-        added = [l for l in new if l not in old]
-        self.assertEqual(len(removed), 1)
-        self.assertTrue(removed[0].startswith("- STEP2の本文確認結果・根拠引用は"))
-        self.assertEqual(len([l for l in added if l.strip()]), 5)
+        self.assertEqual([l for l in old if l not in new], [])  # v4の行は1行も消さない・変えない
+        added = [l for l in new if l not in old and l.strip()]
+        self.assertEqual(len(added), 5)
         self.assertIn("{{PROBLEM_AND_EFFECT_JSON}}", V43)
-        self.assertIn("「発明の課題と効果」に書かれた目的から答えてください", V43)
-        self.assertIn("「何のための構成か」の答えには使わないでください", V43)
+        self.assertIn("効果の種類だけで担当を決めず、必ず請求項の特徴部分と結び付けて", V43)
+        self.assertIn("「発明の課題と効果」が空のときは、これまでどおりです", V43)
         self.assertIn("括弧書きのまとめ（「〜に関連する分野」など）だけを根拠に", V43)
-        # 本日不採用にした文が混ざっていない
-        for ng in ("直接構成または変更", "代表例（非限定）の欄に、特徴部分の仕組みそのものの名前"):
+        for ng in ("直接構成または変更", "代表例（非限定）の欄に、特徴部分の仕組みそのものの名前", "さかのぼらないでください"):
             self.assertNotIn(ng, V43)
 
     def test_render_fills_problem_effect(self):
@@ -89,7 +88,7 @@ class TemplateV43Test(unittest.TestCase):
     def test_render_with_no_problem_effect_gives_empty_list(self):
         handoff = {"候補": [], "選択可能候補ID": [], "選択不可候補ID": [], "工程文脈": {}}
         _, user = render_final_prompt(V43, claims="c", step0={}, process_context={}, handoff=handoff, all_rules=[])
-        self.assertIn("# 発明の課題と効果（この特許自身の記載。候補によらず毎回同じ）\n[]", user)
+        self.assertIn("# 発明の課題と効果（この特許自身の記載。候補によらず毎回同じ。空なら [] ）\n[]", user)
 
     def test_v4_template_still_renders(self):
         handoff = {"候補": [], "選択可能候補ID": [], "選択不可候補ID": [], "工程文脈": {}}

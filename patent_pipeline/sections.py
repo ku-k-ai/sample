@@ -14,11 +14,12 @@ from typing import Any
 WANTED = ("発明が解決しようとする課題", "発明の効果")
 # 見出し：【】で囲まれ、先頭が数字でないもの（段落番号【0004】【０００４】は見出しではない）
 _HEADING = re.compile(r"【([^】0-9０-９][^】]*)】")
-MAX_CHARS = 1500
+MAX_CHARS = 3000
 
 
 def extract_problem_and_effect(full_text: str, max_chars: int = MAX_CHARS) -> list[dict[str, Any]]:
-    """[{"見出し": ..., "原文": ...}] を返す。原文は次の見出しの直前まで（段落番号は残す）。"""
+    """[{"見出し": ..., "原文": ..., "切り詰め": bool}] を返す。原文は次の見出しの直前まで（段落番号は残す）。
+    max_chars を超えた節は切り詰め、"切り詰め": True を付ける（呼出し側でログに残すこと）。"""
     if not isinstance(full_text, str) or not full_text:
         return []
     out = []
@@ -30,5 +31,5 @@ def extract_problem_and_effect(full_text: str, max_chars: int = MAX_CHARS) -> li
         nxt = _HEADING.search(rest)
         body = (rest[:nxt.start()] if nxt else rest).strip()
         if body:
-            out.append({"見出し": want, "原文": body[:max_chars]})
+            out.append({"見出し": want, "原文": body[:max_chars], "切り詰め": len(body) > max_chars})
     return out
