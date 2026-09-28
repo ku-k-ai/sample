@@ -8,6 +8,7 @@ from patent_pipeline.guards import render_final_prompt
 ROOT = Path(__file__).resolve().parents[1]
 V4 = (ROOT / "prompts" / "final_decision_v4.txt").read_text(encoding="utf-8")
 V43 = (ROOT / "prompts" / "final_decision_v4_3.txt").read_text(encoding="utf-8")
+V44 = (ROOT / "prompts" / "final_decision_v4_4.txt").read_text(encoding="utf-8")
 
 SAMPLE = """【技術分野】
 【0001】本発明は、試験装置に関する。
@@ -76,6 +77,25 @@ class TemplateV43Test(unittest.TestCase):
         self.assertIn("括弧書きのまとめ（「〜に関連する分野」など）だけを根拠に", V43)
         for ng in ("直接構成または変更", "代表例（非限定）の欄に、特徴部分の仕組みそのものの名前", "さかのぼらないでください"):
             self.assertNotIn(ng, V43)
+
+    def test_v4_4_only_adds_lines_to_v4(self):
+        old, new = V4.splitlines(), V44.splitlines()
+        self.assertEqual([l for l in old if l not in new], [])
+        added = [l for l in new if l not in old and l.strip()]
+        self.assertEqual(len(added), 9)  # A(4) + v4.4(6) - 文言修正で置き換わったAの1行は数に含む
+        self.assertIn("どのユニット・工程の、どの操作・機能のために", V44)
+        self.assertNotIn("どの装置の、どの操作・機能のために", V44)
+        self.assertIn("担当ユニットには、請求物の名前", V44)
+        self.assertIn("定義の「装置本体」「本体」は、画像形成装置の本体を指します", V44)
+        # 採用しなかったCの行が混ざっていない
+        self.assertNotIn("括弧書きのまとめ", V44)
+
+    def test_render_v4_4(self):
+        handoff = {"候補": [], "選択可能候補ID": [], "選択不可候補ID": [], "工程文脈": {}}
+        _, user = render_final_prompt(V44, claims="c", step0={}, process_context={}, handoff=handoff,
+                                      all_rules=[], problem_effect=extract_problem_and_effect(SAMPLE))
+        self.assertNotIn("{{", user)
+        self.assertIn("音漏れを抑えることを目的とする", user)
 
     def test_render_fills_problem_effect(self):
         handoff = {"候補": [], "選択可能候補ID": [], "選択不可候補ID": [], "工程文脈": {}}
